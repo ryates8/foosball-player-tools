@@ -1,6 +1,0 @@
-/node_modules
-/.sass-cache
-npm-debug.log
-.rebooted
-/public/stylesheets/app.css
-/public/javascripts/main.min.js
