@@ -1,0 +1,75 @@
+extends layout
+
+block content
+	section#header
+		.row
+			.small-10.medium-7.columns
+				h1 Bonzini Points Machine
+				p Analytics. Rankings. Partners.
+			.small-2.medium-5.columns
+				nav
+					button.button.hide-for-large(type='button', data-toggle='offCanvas', data-open='offCanvasRight')
+					#desktop-nav.show-for-large
+						ul
+							li
+								a(href='/') HOME
+							li
+								a(href='#') Coming Soon
+							li
+								a(href='#') Coming Soon
+	section#content
+		.row#partners
+			form#find-partner
+				.small-12.medium-4.columns
+						select(name='user' id='select-player')
+							each val in players
+								option(value='#{val.doublesPoints}')= val.lastName + ' ' + val.firstName + ' ' + val.doublesPoints
+				.small-12.medium-4.columns
+					select(name='limit' id='limit')
+						option(value='2800') 2800
+						option(value='2900') 2900
+						option(value='3000') 3000
+						option(value='3100') 3100
+						option(value='3200' selected) 3200
+						option(value='3300') 3300
+						option(value='3400') 3400
+						option(value='3500') 3500
+						option(value='3600') 3600
+						option(value='3700') 3700
+						option(value='3800') 3700
+				.small-12.medium-4.columns
+					a(href='#', id='submit') Find Partners
+					p Results: #[span#results 0] 
+
+		.row
+			.small-12.columns
+				table#rankings
+					thead
+						td#pcode.show-for-large= headlines.code
+						td#lname= headlines.lastName
+						td#fname= headlines.firstName
+						td.show-for-large#city= headlines.city
+						td.show-for-large#state= headlines.state
+						td#dpoints= headlines.doublesPoints
+						td.show-for-large#dmatches= headlines.doublesMatches
+						td#spoints= headlines.singlesPoints
+						td.show-for-large#smatches= headlines.singlesMatches
+					tbody
+						each val in players
+							tr
+									td.show-for-large= val.code
+									td= val.lastName
+									td= val.firstName
+									td.show-for-large= val.city
+									td.show-for-large= val.state
+									td= val.doublesPoints
+									td.show-for-large= val.doublesMatches
+									td= val.singlesPoints
+									td.show-for-large= val.singlesMatches
+
+
+	section#footer
+		script.
+			var players = !{JSON.stringify(players)};
+		h4 All rights reserved.
+		
