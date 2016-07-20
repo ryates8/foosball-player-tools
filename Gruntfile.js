@@ -146,7 +146,7 @@ module.exports = function(grunt) {
                     'public/javascripts/libs/*.js',
                     'node_modules/foundation-sites/dist/foundation.min.js',
                     'node_modules/foundation-sites/dist/plugins/foundation.offcanvas.js',
-                    'public/javascripts/scripts/app.js'
+                    'public/javascripts/scripts/*.js'
                 ],
                 dest: 'public/javascripts/main.min.js',
             }

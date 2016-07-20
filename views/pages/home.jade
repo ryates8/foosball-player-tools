@@ -1,22 +1,6 @@
-extends layout
+extends ../partials/layout
 
 block content
-	section#header
-		.row
-			.small-10.medium-7.columns
-				h1 Bonzini Points Machine
-				p Analytics. Rankings. Partners.
-			.small-2.medium-5.columns
-				nav
-					button.button.hide-for-large(type='button', data-toggle='offCanvas', data-open='offCanvasRight')
-					#desktop-nav.show-for-large
-						ul
-							li
-								a(href='/') HOME
-							li
-								a(href='#') Coming Soon
-							li
-								a(href='#') Coming Soon
 	section#content
 		.row#partners
 			form#find-partner
@@ -66,10 +50,4 @@ block content
 									td.show-for-large= val.doublesMatches
 									td= val.singlesPoints
 									td.show-for-large= val.singlesMatches
-
-
-	section#footer
-		script.
-			var players = !{JSON.stringify(players)};
-		h4 All rights reserved.
 		

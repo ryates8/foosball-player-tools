@@ -1,3 +1,5 @@
+'use strict';
+
 var dpointsState = true;
 var spointsState = true;
 var dmatchesState = true;
@@ -8,26 +10,11 @@ var editedPlayersList = players;
 
 $(document).ready(function() {
     $('table').stickyTableHeaders();
-    var tableOffset = $("#rankings").offset().top;
-    var $header = $("#rankings > thead").clone();
-    var $fixedHeader = $("#header-fixed").append($header);
-
-    $(window).bind("scroll", function() {
-        var offset = $(this).scrollTop();
-
-        if (offset >= tableOffset && $fixedHeader.is(":hidden")) {
-            $fixedHeader.show();
-        } else if (offset < tableOffset) {
-            $fixedHeader.hide();
-        }
-    });
-
-
     $(document).foundation();
-    $('#results').html(players.length);
+    $('#results').html(fullPlayersList.length);
 
-    $(document).off('click', '#dpoints').on('click', '#dpoints', function() {
-
+    $(document).off('click', '#dpoints').on('click', '#dpoints', function(e) {
+        e.preventDefault();
 
         editedPlayersList.sort(function(a, b) {
             if (dpointsState !== true) {
@@ -44,8 +31,8 @@ $(document).ready(function() {
     });
 
     $(document).off('click', '#spoints').on('click', '#spoints', function(e) {
-
-        players.sort(function(a, b) {
+        e.preventDefault();
+        fullPlayersList.sort(function(a, b) {
             if (spointsState !== true) {
                 return a.singlesPoints - b.singlesPoints;
 
@@ -55,12 +42,12 @@ $(document).ready(function() {
             }
         });
         spointsState = !spointsState;
-        updateHtml(players);
+        updateHtml(fullPlayersList);
     });
 
-    $('#dmatches').click(function() {
-
-        players.sort(function(a, b) {
+    $('#dmatches').click(function(e) {
+        e.preventDefault();
+        fullPlayersList.sort(function(a, b) {
             if (dmatchesState !== true) {
                 return a.doublesMatches - b.doublesMatches;
 
@@ -71,14 +58,14 @@ $(document).ready(function() {
         });
         dmatchesState = !dmatchesState;
 
-        return updateHtml(players);
+        return updateHtml(fullPlayersList);
     });
 
 
 
     $('#smatches').click(function(e) {
-
-        players.sort(function(a, b) {
+        e.preventDefault();
+        fullPlayersList.sort(function(a, b) {
             if (smatchesState !== true) {
                 return a.singlesMatches - b.singlesMatches;
 
@@ -88,25 +75,24 @@ $(document).ready(function() {
             }
         });
         smatchesState = !smatchesState;
-        updateHtml(players);
+        updateHtml(fullPlayersList);
     });
 
+
     $('#submit').click(function(e) {
+        e.preventDefault();
         var playerPoints = $('#select-player').val();
         var limit = $('#limit').val();
         var difference = limit - playerPoints;
         editedPlayersList = [];
 
 
-        for (var x = 0; x < players.length; x++) {
-            if (difference >= players[x].doublesPoints) {
-                editedPlayersList.push(players[x]);
+        for (var x = 0; x < fullPlayersList.length; x++) {
+            if (difference >= fullPlayersList[x].doublesPoints) {
+                editedPlayersList.push(fullPlayersList[x]);
             }
         }
         $('#results').html(editedPlayersList.length);
-
-
-
 
         editedPlayersList.sort(function(a, b) {
             if (dpointsState !== true) {
@@ -125,11 +111,12 @@ $(document).ready(function() {
 
 
 
-function updateHtml(playersArr) {
+function updateHtml(fullPlayersListArr) {
     $('#rankings tbody').html('');
-    var cachedLength = playersArr.length;
+    var cachedLength = fullPlayersListArr.length;
+    
     for (var x = 0; x < cachedLength; x++) {
-        var visibilityClass = "show-for-large";
-        $('#rankings tbody').append('<tr><td class="' + visibilityClass + '">' + playersArr[x].code + '</td><td>' + playersArr[x].lastName + '</td><td>' + playersArr[x].firstName + '</td><td class="' + visibilityClass + '">' + playersArr[x].city + '</td><td  class="' + visibilityClass + '">' + playersArr[x].state + '</td><td>' + playersArr[x].doublesPoints + '</td><td class="' + visibilityClass + '">' + playersArr[x].doublesMatches + '</td><td>' + playersArr[x].singlesPoints + '</td><td class="' + visibilityClass + '">' + playersArr[x].singlesMatches + '</td></tr>');
+        var visibilityClass = 'show-for-large';
+        $('#rankings tbody').append('<tr><td class="' + visibilityClass + '">' + fullPlayersListArr[x].code + '</td><td>' + fullPlayersListArr[x].lastName + '</td><td>' + fullPlayersListArr[x].firstName + '</td><td class="' + visibilityClass + '">' + fullPlayersListArr[x].city + '</td><td  class="' + visibilityClass + '">' + fullPlayersListArr[x].state + '</td><td>' + fullPlayersListArr[x].doublesPoints + '</td><td class="' + visibilityClass + '">' + fullPlayersListArr[x].doublesMatches + '</td><td>' + fullPlayersListArr[x].singlesPoints + '</td><td class="' + visibilityClass + '">' + fullPlayersListArr[x].singlesMatches + '</td></tr>');
     }
 }

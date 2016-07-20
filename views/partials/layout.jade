@@ -1,0 +1,17 @@
+doctype html
+html
+	head
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge')
+		meta(name='description', content='#{description}')
+		meta(name='keywords', content='#{keywords}')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		title= title
+		link(rel='stylesheet', href='/stylesheets/app.css')
+		script(src='https://d3js.org/d3.v4.min.js')
+	body
+		include mobile-nav
+		include hero
+		block content
+		include footer
+			

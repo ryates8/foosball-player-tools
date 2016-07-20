@@ -2,6 +2,11 @@
     max-width: rem_calc(960px) !important;
 }
 
+body {
+    width: 100%;
+    height: 100%;
+}
+
 section#header {
     padding: 10px 0px 0px 0px;
     border-bottom: 2px solid $charcoal;
@@ -120,4 +125,48 @@ section#footer {
         bottom: 0px;
         width: 100%;
     }
+}
+
+#analytics {
+    margin-top: 40px;
+    width: 320px;
+    height: 320px;
+    position: relative;
+}
+
+#legend {
+    svg text {
+        font-size: rem_calc(16px);
+    }
+}
+
+.tooltip {
+    background: #eee;
+    box-shadow: 0 0 5px #999999;
+    color: #333;
+    display: none;
+    font-size: 12px;
+    left: 130px;
+    padding: 10px;
+    position: absolute;
+    text-align: center;
+    top: 95px;
+    width: 80px;
+    z-index: 10;
+}
+
+.legend {
+    font-size: 12px;
+}
+
+rect {
+    cursor: pointer;
+    /* NEW */
+    stroke-width: 2;
+}
+
+rect.disabled {
+    /* NEW */
+    fill: transparent !important;
+    /* NEW */
 }
