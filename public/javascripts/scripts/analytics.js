@@ -16,7 +16,7 @@ $(document).ready(function() {
         states.sort(function(a, b) {
             return b.count - a.count;
         });
-        console.log(states);
+        //console.log(states);
         drawChart(states);
     }
 

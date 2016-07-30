@@ -1,8 +1,8 @@
-
+'use strict';
 
 function parseHtml(html, callback) {
     //This function converts html to an array of player objects
-    var htmlparser = require("htmlparser");
+    var htmlparser = require('htmlparser');
     var rawHtml = html;
     var playersArray = [];
 
@@ -11,7 +11,6 @@ function parseHtml(html, callback) {
             callback(error);
         } else {
             var onlyRows = [];
-            var onlyCells = [];
             var table = dom[0].children[3];
             var tableElements = table.children[1].children;
 
@@ -52,16 +51,44 @@ function parseHtml(html, callback) {
 
 function player(csvRow) {
     //turns player array into a player
+    //console.log(csvRow);
     var x = 0;
-    this.code = csvRow[x++];
-    this.lastName = csvRow[x++];
-    this.firstName = csvRow[x++];
-    this.city = csvRow[x++];
-    this.state = csvRow[x++];
-    this.singlesPoints = csvRow[x++];
-    this.singlesMatches = csvRow[x++];
-    this.doublesPoints = csvRow[x++];
-    this.doublesMatches = csvRow[x++];
+
+    //put this in because bonziniusa likes to change the information displayed
+    //on their points page
+    if (csvRow.length > 7) {
+
+        this.code = csvRow[x++];
+        this.lastName = csvRow[x++];
+        this.firstName = csvRow[x++];
+        if (csvRow[x] === '&nbsp;') {
+            csvRow[x] = 'Unkown';
+        }
+        this.city = csvRow[x++];
+        if (csvRow[x] === '&nbsp;') {
+            csvRow[x] = 'Unkown';
+        }
+        this.state = csvRow[x++]
+        this.singlesPoints = csvRow[x++];
+        this.singlesMatches = csvRow[x++];
+        this.doublesPoints = csvRow[x++];
+        this.doublesMatches = csvRow[x++];
+    } else {
+        this.code = csvRow[x++];
+        this.lastName = csvRow[x++];
+        this.firstName = csvRow[x++];
+        if (csvRow[x] === '&nbsp;') {
+            csvRow[x] = 'Unkown';
+        }
+        this.city = csvRow[x++];
+        if (csvRow[x] === '&nbsp;') {
+            csvRow[x] = 'Unkown';
+        }
+        this.state = csvRow[x++]
+        this.singlesPoints = csvRow[x++];
+        this.doublesPoints = csvRow[x++];
+    }
+
 
 }
 

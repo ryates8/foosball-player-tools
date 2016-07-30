@@ -89,6 +89,19 @@ section#content {
             }
         }
     }
+    #rankings {
+        thead {
+            td {
+                padding: 0px;
+            }
+        }
+        a {
+            width: 100%;
+            display: block;
+            height: 100%;
+            padding: 0.5rem 0.625rem 0.625rem;
+        }
+    }
     #partners {
         margin-bottom: 10px;
         p {

@@ -10,6 +10,8 @@ block content
 								option(value='#{val.doublesPoints}')= val.lastName + ' ' + val.firstName + ' ' + val.doublesPoints
 				.small-12.medium-4.columns
 					select(name='limit' id='limit')
+						option(value='2800') 2600
+						option(value='2800') 2700
 						option(value='2800') 2800
 						option(value='2900') 2900
 						option(value='3000') 3000
@@ -20,7 +22,7 @@ block content
 						option(value='3500') 3500
 						option(value='3600') 3600
 						option(value='3700') 3700
-						option(value='3800') 3700
+						option(value='3800') 3800
 				.small-12.medium-4.columns
 					a(href='#', id='submit') Find Partners
 					p Results: #[span#results 0] 
@@ -29,15 +31,32 @@ block content
 			.small-12.columns
 				table#rankings
 					thead
-						td#pcode.show-for-large= headlines.code
-						td#lname= headlines.lastName
-						td#fname= headlines.firstName
-						td.show-for-large#city= headlines.city
-						td.show-for-large#state= headlines.state
-						td#dpoints= headlines.doublesPoints
-						td.show-for-large#dmatches= headlines.doublesMatches
-						td#spoints= headlines.singlesPoints
-						td.show-for-large#smatches= headlines.singlesMatches
+						
+						td.show-for-large
+							a(href='#', id='pcode') Player<br />Code
+								<br style="clear: both;"/>
+						td
+							a(href='#', id='lname')= headlines.lastName
+								<br style="clear: both;"/>
+						td
+							a(href='#', id='fname')= headlines.firstName
+								<br style="clear: both;"/>
+						td.show-for-large
+							a(href='#', id='city')= headlines.city
+								<br style="clear: both;"/>
+						td.show-for-large
+							a(href='#', id='state')= headlines.state
+								<br style="clear: both;"/>
+						td
+							a(href='#', id='dpoints')= headlines.doublesPoints
+								<br style="clear: both;"/>
+						if headlines.doublesMatches
+							td.show-for-large#dmatches= headlines.doublesMatches
+						td#spoints
+							a(href='#', id='spoints')= headlines.singlesPoints
+								<br style="clear: both;"/>
+						if headlines.singlesMatches
+							td.show-for-large#smatches= headlines.singlesMatches
 					tbody
 						each val in players
 							tr
@@ -47,7 +66,9 @@ block content
 									td.show-for-large= val.city
 									td.show-for-large= val.state
 									td= val.doublesPoints
-									td.show-for-large= val.doublesMatches
+									if val.doublesMatches
+										td.show-for-large= val.doublesMatches
 									td= val.singlesPoints
-									td.show-for-large= val.singlesMatches
+									if val.singlesMatches
+										td.show-for-large= val.singlesMatches
 		

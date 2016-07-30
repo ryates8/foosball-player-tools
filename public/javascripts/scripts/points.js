@@ -1,6 +1,6 @@
 'use strict';
 
-var dpointsState = true;
+var dpointsState = true; //true is high, false is low
 var spointsState = true;
 var dmatchesState = true;
 var smatchesState = true;
@@ -95,15 +95,9 @@ $(document).ready(function() {
         $('#results').html(editedPlayersList.length);
 
         editedPlayersList.sort(function(a, b) {
-            if (dpointsState !== true) {
-                return a.doublesPoints - b.doublesPoints;
-
-            } else {
-                return b.doublesPoints - a.doublesPoints;
-
-            }
+            return b.doublesPoints - a.doublesPoints;
         });
-        dpointsState = !dpointsState;
+        dpointsState = false;
 
         return updateHtml(editedPlayersList);
     });
@@ -114,9 +108,14 @@ $(document).ready(function() {
 function updateHtml(fullPlayersListArr) {
     $('#rankings tbody').html('');
     var cachedLength = fullPlayersListArr.length;
-    
+
     for (var x = 0; x < cachedLength; x++) {
         var visibilityClass = 'show-for-large';
-        $('#rankings tbody').append('<tr><td class="' + visibilityClass + '">' + fullPlayersListArr[x].code + '</td><td>' + fullPlayersListArr[x].lastName + '</td><td>' + fullPlayersListArr[x].firstName + '</td><td class="' + visibilityClass + '">' + fullPlayersListArr[x].city + '</td><td  class="' + visibilityClass + '">' + fullPlayersListArr[x].state + '</td><td>' + fullPlayersListArr[x].doublesPoints + '</td><td class="' + visibilityClass + '">' + fullPlayersListArr[x].doublesMatches + '</td><td>' + fullPlayersListArr[x].singlesPoints + '</td><td class="' + visibilityClass + '">' + fullPlayersListArr[x].singlesMatches + '</td></tr>');
+        if (fullPlayersListArr[x].doublesMatches) {
+            $('#rankings tbody').append('<tr><td class="' + visibilityClass + '">' + fullPlayersListArr[x].code + '</td><td>' + fullPlayersListArr[x].lastName + '</td><td>' + fullPlayersListArr[x].firstName + '</td><td class="' + visibilityClass + '">' + fullPlayersListArr[x].city + '</td><td  class="' + visibilityClass + '">' + fullPlayersListArr[x].state + '</td><td>' + fullPlayersListArr[x].doublesPoints + '</td><td class="' + visibilityClass + '">' + fullPlayersListArr[x].doublesMatches + '</td><td>' + fullPlayersListArr[x].singlesPoints + '</td><td class="' + visibilityClass + '">' + fullPlayersListArr[x].singlesMatches + '</td></tr>');
+        } else {
+            $('#rankings tbody').append('<tr><td class="' + visibilityClass + '">' + fullPlayersListArr[x].code + '</td><td>' + fullPlayersListArr[x].lastName + '</td><td>' + fullPlayersListArr[x].firstName + '</td><td class="' + visibilityClass + '">' + fullPlayersListArr[x].city + '</td><td  class="' + visibilityClass + '">' + fullPlayersListArr[x].state + '</td><td>' + fullPlayersListArr[x].doublesPoints + '</td><td>' + fullPlayersListArr[x].singlesPoints + '</td></tr>');
+        }
+
     }
 }
