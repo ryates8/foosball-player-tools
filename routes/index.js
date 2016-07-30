@@ -9,7 +9,7 @@ router.get('/', function(req, res) {
     
     arrayOfPlayers.init(function(error, players) {
         if (error) {console.log(error);}
-        console.log(players.tableHeaders);
+        //console.log(players.tableHeaders);
         res.render('pages/home', { title: 'Bonzini Points Machine', headlines: players.tableHeaders, players: players.tableData });
     });
 

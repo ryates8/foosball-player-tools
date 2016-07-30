@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
     // Project configuration.
@@ -6,8 +8,8 @@ module.exports = function(grunt) {
 
         // CONFIG ===================================/
         concurrent: {
-            dev: ["sass:dev", "concat", "nodemon:dev", "watch"],
-            debug: ["sass:dev", "concat", "nodemon:debug", "exec:debug", "open:debug", "open:inspector", "watch"],
+            dev: ['sass:dev', 'concat', 'nodemon:dev', 'watch'],
+            debug: ['sass:dev', 'concat', 'nodemon:debug', 'exec:debug', 'open:debug', 'open:inspector', 'watch'],
             options: {
                 logConcurrentOutput: true
             }
@@ -18,8 +20,8 @@ module.exports = function(grunt) {
                 options: {
                     /** Environment variables required by the NODE application **/
                     env: {
-                        "NODE_ENV": "development",
-                        "NODE_CONFIG": "dev"
+                        'NODE_ENV': 'development',
+                        'NODE_CONFIG': 'dev'
                     },
                     delay: 300,
 
@@ -34,7 +36,7 @@ module.exports = function(grunt) {
                             // Delay before server listens on port
 
                             setTimeout(function() {
-                                console.log("Starting the server");
+                                console.log('Starting the server');
                                 require('open')('http://127.0.0.1:3000');
                             }, 1000);
                         });
@@ -44,7 +46,7 @@ module.exports = function(grunt) {
                             // Delay before server listens on port
 
                             setTimeout(function() {
-                                console.log("Restarting Node");
+                                console.log('Restarting Node');
                                 require('fs').writeFileSync('.rebooted', 'rebooted');
                             }, 1000);
                         });
@@ -56,8 +58,8 @@ module.exports = function(grunt) {
                 options: {
                     /** Environment variables required by the NODE application **/
                     env: {
-                        "NODE_ENV": "development",
-                        "NODE_CONFIG": "dev"
+                        'NODE_ENV': 'development',
+                        'NODE_CONFIG': 'dev'
                     },
                     nodeArgs: ['--debug'],
                     delay: 300,
@@ -72,7 +74,7 @@ module.exports = function(grunt) {
                             // Delay before server listens on port
 
                             setTimeout(function() {
-                                console.log("Starting the server");
+                                console.log('Starting the server');
                                 require('open')('http://127.0.0.1:5858');
                                 setTimeout(function() {
                                     require('open')('http://127.0.0.1:8080/?port=5858');
@@ -85,7 +87,7 @@ module.exports = function(grunt) {
                             // Delay before server listens on port
 
                             setTimeout(function() {
-                                console.log("Restarting Node");
+                                console.log('Restarting Node');
                                 require('fs').writeFileSync('.rebooted', 'rebooted');
                             }, 1500);
                         });
@@ -96,7 +98,7 @@ module.exports = function(grunt) {
         express: {
             debug: {
                 options: {
-                    script: 'bin/otovel',
+                    script: 'bin/www',
                     node_env: 'development',
                     debug: true
                 }
@@ -113,8 +115,10 @@ module.exports = function(grunt) {
                     expand: true,
                     src: [
                         'app.js',
+                        'database/**',
                         'package.json',
                         'bin/**',
+                        'services/**',
                         'public/**',
                         'routes/**',
                         'views/**'
@@ -181,7 +185,7 @@ module.exports = function(grunt) {
                 livereload: true
             },
             js: {
-                files: ['public/javascripts/**/*.js','!public/javascripts/main.min.js'],
+                files: ['public/javascripts/**/*.js', '!public/javascripts/main.min.js'],
                 tasks: ['concat']
             },
             sass: {
@@ -225,12 +229,22 @@ module.exports = function(grunt) {
                 },
                 src: ['public/images/**']
             }
+        },
+        compress: {
+            prod: {
+                options: {
+                    archive: 'archive.zip'
+                },
+                files: [
+                    { cwd: 'prod_files/', src: ['**'], dest: 'bpm/' }, // includes files in path and its subdirs
+                ]
+            }
         }
     });
     // DEPENDENT PLUGINS =========================/
     grunt.loadNpmTasks('grunt-exec');
-    grunt.loadNpmTasks("grunt-nodemon");
-    grunt.loadNpmTasks("grunt-concurrent");
+    grunt.loadNpmTasks('grunt-nodemon');
+    grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -239,10 +253,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-imageoptim');
     grunt.loadNpmTasks('grunt-open');
+    grunt.loadNpmTasks('grunt-contrib-compress');
     // TASKS =====================================/
 
-    grunt.registerTask("default", ["concurrent:dev"]);
-    grunt.registerTask("debug", ["concurrent:debug"]);
-    grunt.registerTask("prod", ["concat", "sass:prod", "uglify:prod", "imageoptim:prod", "copy:prod"]);
-    grunt.registerTask("publish", ["concat", "sass:prod", "uglify:prod", "copy:prod"]);
+    grunt.registerTask('default', ['concurrent:dev']);
+    grunt.registerTask('debug', ['concurrent:debug']);
+    grunt.registerTask('prod', ['concat', 'sass:prod', 'uglify:prod', 'imageoptim:prod', 'copy:prod']);
+    grunt.registerTask('publish', ['concat', 'sass:prod', 'uglify:prod', 'copy:prod', 'compress:prod']);
 };
