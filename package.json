@@ -18,7 +18,7 @@
     "foundation-sites": "^6.2.3",
     "htmlparser": "^1.7.7",
     "jade": "~1.11.0",
-    "knex": "^0.11.7",
+    "knex": "^0.11.9",
     "morgan": "~1.6.1",
     "mysql": "^2.11.1",
     "react": "^15.2.1",
