@@ -2,12 +2,12 @@
 
 var express = require('express');
 var router = express.Router();
-var arrayOfPlayers = require('../services/bonziniScraper');
+var arrayOfPlayers = require('../services/player.service');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    
-    arrayOfPlayers.init(function(error, players) {
+
+    arrayOfPlayers.fetch(function(error, players) {
         if (error) {console.log(error);}
         //console.log(players.tableHeaders);
         res.render('pages/home', { title: 'Bonzini Points Machine', headlines: players.tableHeaders, players: players.tableData });
@@ -17,7 +17,7 @@ router.get('/', function(req, res) {
 
 router.get('/analytics', function(req, res) {
 
-    arrayOfPlayers.init(function(error, players) {
+    arrayOfPlayers.fetch(function(error, players) {
         if (error) {console.log(error);}
         res.render('pages/analytics', { title: 'Bonzini Points Machine', headlines: players.tableHeaders, players: players.tableData });
     });
@@ -25,7 +25,7 @@ router.get('/analytics', function(req, res) {
 
 router.get('/rankings', function(req, res) {
 
-    arrayOfPlayers.init(function(error, players) {
+    arrayOfPlayers.fetch(function(error, players) {
         if (error) {console.log(error);}
         res.render('pages/rankings', { title: 'Bonzini Points Machine', headlines: players.tableHeaders, players: players.tableData });
     });
