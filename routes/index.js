@@ -48,6 +48,7 @@ router.post("/upload", upload.single('file'), function (req, res, next) {
       const parsedCsv = parseCsv(fileRows);
       console.log(parsedCsv);
       playersService.create(parsedCsv, function(err, res) {
+        console.log(err);
         console.log(res);
       });
       res.send('success');
@@ -59,7 +60,7 @@ router.get('/upload', function (req, res) {
 });
 
 const indexKeyMap = {
-  0: '_id',
+  0: 'playerCode',
   1: 'lastName',
   2: 'firstName',
   3: 'city',

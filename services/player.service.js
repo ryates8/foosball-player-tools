@@ -3,6 +3,7 @@
 const mongoose = require('../db').db;
 
 const playerSchema = new mongoose.Schema({
+    playerCode: String,
     firstName: String,
     lastName: String,
     city: String,
