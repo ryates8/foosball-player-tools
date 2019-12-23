@@ -9,7 +9,7 @@ module.exports = function(grunt) {
         // CONFIG ===================================/
         concurrent: {
             dev: ['sass:dev', 'concat', 'nodemon:dev', 'watch'],
-            debug: ['sass:dev', 'concat', 'nodemon:debug', 'exec:debug', 'open:debug', 'open:inspector', 'watch'],
+            debug: ['sass:dev', 'concat', 'nodemon:debug', 'open:debug', 'watch'],
             options: {
                 logConcurrentOutput: true
             }
@@ -61,7 +61,7 @@ module.exports = function(grunt) {
                         'NODE_ENV': 'development',
                         'NODE_CONFIG': 'dev'
                     },
-                    nodeArgs: ['--debug'],
+                    nodeArgs: ['--inspect'],
                     delay: 300,
                     callback: function(nodemon) {
                         nodemon.on('log', function(event) {

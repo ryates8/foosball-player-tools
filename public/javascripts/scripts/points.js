@@ -2,7 +2,6 @@
 $(document).ready(function() {
 
     $('table').stickyTableHeaders();
-    $(document).foundation();
     $('#results').html(playerSorter.numberOfPlayers());
 
     $('#fname').click(function() {
@@ -40,6 +39,8 @@ $(document).ready(function() {
     $('#submit').click(function() {
         return playerSorter.findAPartner();
     });
+
+  // $(document).foundation();
 });
 
 

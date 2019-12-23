@@ -1,39 +1,34 @@
 "use strict";
 
-var mongoose = require('../db').db;
+const mongoose = require('../db').db;
 
-var playerSchema = new mongoose.Schema({
-  firstName: String, lastName: String, city: String, region: String, singlesPoints: String, doublesPoints: String
-});
+const playerSchema = new mongoose.Schema({
+    firstName: String,
+    lastName: String,
+    city: String,
+    region: String,
+    singlesPoints: String,
+    doublesPoints: String
+  },
+  {collection: 'players'});
 
-var playerModel = mongoose.model('players', playerSchema);
 
+class playerModel extends mongoose.Model {
+  static fetch(callback) {
+    this.find({}, (err, players) => {
+      if (err) {
+        console.log("err", err);
+        callback(err, null);
+      }
 
-var playerService = {
-  fetch: function (callback) {
-          playerModel.find({}, function(err, players) {
-            console.log("err", err);
-            if (err) callback(err, null);
-            console.log(players);
-            callback(null, {
-              tableHeaders: ["firstName", "lastName", "city", "region", "singlesPoints", "doublesPoints"],
-              tableData: players
-            });
-          });
-
-    // callback(null, {
-    //   tableHeaders: ["_id", "firstName", "lastName", "city", "region", "singlesPoints", "doublesPoints"],
-    //   tableData: [{
-    //     _id: "123",
-    //     firstName: "Joe",
-    //     lastName: "Dirt",
-    //     city: "Durham",
-    //     region: "NC",
-    //     singlesPoints: "1200",
-    //     doublesPoints: "1250"
-    //   }]
-    // });
+      console.log('players', players);
+      callback(null, {
+        tableHeaders: ["firstName", "lastName", "city", "region", "singlesPoints", "doublesPoints"],
+        tableData: players
+      });
+    });
   }
-};
+}
 
-module.exports = playerService;
+playerSchema.loadClass(playerModel);
+module.exports = mongoose.model('players', playerSchema);

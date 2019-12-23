@@ -9,7 +9,12 @@
     // Documentation: http://www.jshint.com/docs/options/
     "browser": true,
     "esnext": true,
-    "globals": { $: true, require: true },
+  "globals": {
+    "$": true,
+    "require": true,
+    "module": true,
+    "console": true
+  },
     "strict": "global",
     "undef": true,
     "unused": true
