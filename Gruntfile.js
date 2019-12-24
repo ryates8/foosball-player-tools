@@ -257,6 +257,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', ['concurrent:dev']);
     grunt.registerTask('debug', ['concurrent:debug']);
-    grunt.registerTask('prod', ['concat', 'sass:prod', 'uglify:prod', 'imageoptim:prod', 'copy:prod']);
-    grunt.registerTask('publish', ['concat', 'sass:prod', 'uglify:prod', 'copy:prod', 'compress:prod']);
+    grunt.registerTask('prod', ['concat', 'sass:prod', 'imageoptim:prod', 'copy:prod']);
+    grunt.registerTask('publish', ['concat', 'sass:prod', 'copy:prod', 'compress:prod']);
 };
