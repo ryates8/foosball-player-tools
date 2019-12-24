@@ -7,7 +7,8 @@ db.connection.on('error', (err) => console.error('CoreDb error: ', err));
 
 const MongooseManager = {
     db : db,
-    connect: () => db.connect('mongodb+srv://ryates:Benson3301!@cluster0-ajlug.mongodb.net/test?retryWrites=true&w=majority\n'),
+  connect: () => db.connect(`mongodb+srv://ryates:${process.env.POINTS_PASSWORD}@cluster0-ajlug.mongodb.net/test?retryWrites=true&w=majority
+`),
     disconnect : () => db.disconnect()
 };
 
