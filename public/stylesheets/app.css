@@ -6396,6 +6396,7 @@ html.is-reveal-open body {
 }*/
 .row {
   max-width: 60rem !important;
+  margin: 0 auto;
 }
 
 body {

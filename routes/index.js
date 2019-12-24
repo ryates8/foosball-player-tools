@@ -1,17 +1,17 @@
 'use strict';
 
-var express = require('express');
+const express = require('express');
 const multer = require('multer');
 const csv = require('fast-csv');
-var router = express.Router();
-var playersService = require('../services/player.service');
-var fs = require('fs');
+const router = express.Router();
+const playersService = require('../services/player.service');
+const fs = require('fs');
 const upload = multer({dest: 'uploads/'});
 
 /* GET home page. */
-router.get('/', function(req, res) {
+router.get('/', (req, res) => {
 
-  playersService.fetch(function (error, players) {
+  playersService.fetch((error, players) => {
         if (error) {console.log(error);}
         //console.log(players.tableHeaders);
         res.render('pages/home', { title: 'Bonzini Points Machine', headlines: players.tableHeaders, players: players.tableData });
@@ -19,43 +19,41 @@ router.get('/', function(req, res) {
 
 });
 
-router.get('/analytics', function(req, res) {
+router.get('/analytics', (req, res) => {
 
-  playersService.fetch(function (error, players) {
+  playersService.fetch((error, players) => {
         if (error) {console.log(error);}
         res.render('pages/analytics', { title: 'Bonzini Points Machine', headlines: players.tableHeaders, players: players.tableData });
     });
 });
 
-router.get('/rankings', function(req, res) {
+router.get('/rankings', (req, res) => {
 
-  playersService.fetch(function (error, players) {
+  playersService.fetch((error, players) => {
         if (error) {console.log(error);}
         res.render('pages/rankings', { title: 'Bonzini Points Machine', headlines: players.tableHeaders, players: players.tableData });
     });
 });
 
-router.post("/upload", upload.single('file'), function (req, res, next) {
+router.post("/upload", upload.single('file'), (req, res) => {
   const fileRows = [];
+
   csv.fromPath(req.files[0].path)
-    .on("data", function (data) {
+    .on("data", data => {
       fileRows.push(data); // push each row
     })
-    .on("end", function () {
-      //console.log(fileRows); //contains array of arrays. Each inner array represents row of the csv file, with each element of it a column
+    .on("end", () => {
       fs.unlinkSync(req.files[0].path);   // remove temp file
-      //process "fileRows" and respond
       const parsedCsv = parseCsv(fileRows);
-      console.log(parsedCsv);
-      playersService.create(parsedCsv, function(err, res) {
-        console.log(err);
+      playersService.create(parsedCsv, (err, res) => {
         console.log(res);
       });
+
       res.send('success');
     });
 });
 
-router.get('/upload', function (req, res) {
+router.get('/upload', (req, res) => {
   res.render('pages/upload', {title: 'Bonzini Points Machine'});
 });
 

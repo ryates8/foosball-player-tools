@@ -28,19 +28,11 @@ $(document).ready(function() {
         return playerSorter.sortNumeric('spointsState', 'singlesPoints');
     });
 
-    $('#dmatches').click(function() {
-        return playerSorter.sortNumeric('dmatchesState', 'doublesMatches');
-    });
-
-    $('#smatches').click(function() {
-        return playerSorter.sortNumeric('smatchesState', 'singlesMatches');
-    });
-
     $('#submit').click(function() {
         return playerSorter.findAPartner();
     });
 
-  // $(document).foundation();
+  $(document).foundation();
 });
 
 
@@ -92,21 +84,15 @@ var playerSorter = {
     },
 
     findAPartner: function() {
-        var length = this.fullPlayersList.length;
-        var playerPoints = $('#select-player').val();
-        var limit = $('#limit').val();
-        var difference = limit - playerPoints;
-        var editedPlayersList = [];
-        for (var x = 0; x < length; x++) {
-            if (difference >= this.fullPlayersList[x].doublesPoints) {
-                editedPlayersList.push(this.fullPlayersList[x]);
-            }
-        }
+      const playerPoints = $('#select-player').val();
+      const limit = $('#limit').val();
+      const difference = limit - playerPoints;
+      const editedPlayersList = this.fullPlayersList
+        .filter(player => difference >= player.doublesPoints)
+        .sort((a, b) => b.doublesPoints - a.doublesPoints);
+
         $('#results').html(editedPlayersList.length);
 
-        editedPlayersList.sort(function(a, b) {
-            return b.doublesPoints - a.doublesPoints;
-        });
         this.dpointsState = false;
 
         return this._updateHtml(editedPlayersList);
@@ -119,9 +105,9 @@ var playerSorter = {
         for (var x = 0; x < cachedLength; x++) {
             var visibilityClass = 'show-for-large';
             if (fullPlayersListArr[x].doublesMatches) {
-                $('#rankings tbody').append('<tr><td class="' + visibilityClass + '">' + fullPlayersListArr[x].code + '</td><td>' + fullPlayersListArr[x].lastName + '</td><td>' + fullPlayersListArr[x].firstName + '</td><td class="' + visibilityClass + '">' + fullPlayersListArr[x].city + '</td><td  class="' + visibilityClass + '">' + fullPlayersListArr[x].state + '</td><td>' + fullPlayersListArr[x].doublesPoints + '</td><td class="' + visibilityClass + '">' + fullPlayersListArr[x].doublesMatches + '</td><td>' + fullPlayersListArr[x].singlesPoints + '</td><td class="' + visibilityClass + '">' + fullPlayersListArr[x].singlesMatches + '</td></tr>');
+              $('#rankings tbody').append('<tr><td class="' + visibilityClass + '">' + fullPlayersListArr[x].playerCode + '</td><td>' + fullPlayersListArr[x].lastName + '</td><td>' + fullPlayersListArr[x].firstName + '</td><td class="' + visibilityClass + '">' + fullPlayersListArr[x].city + '</td><td  class="' + visibilityClass + '">' + fullPlayersListArr[x].region + '</td><td>' + fullPlayersListArr[x].doublesPoints + '</td><td class="' + visibilityClass + '">' + fullPlayersListArr[x].doublesMatches + '</td><td>' + fullPlayersListArr[x].singlesPoints + '</td><td class="' + visibilityClass + '">' + fullPlayersListArr[x].singlesMatches + '</td></tr>');
             } else {
-                $('#rankings tbody').append('<tr><td class="' + visibilityClass + '">' + fullPlayersListArr[x].code + '</td><td>' + fullPlayersListArr[x].lastName + '</td><td>' + fullPlayersListArr[x].firstName + '</td><td class="' + visibilityClass + '">' + fullPlayersListArr[x].city + '</td><td  class="' + visibilityClass + '">' + fullPlayersListArr[x].state + '</td><td>' + fullPlayersListArr[x].doublesPoints + '</td><td>' + fullPlayersListArr[x].singlesPoints + '</td></tr>');
+              $('#rankings tbody').append('<tr><td class="' + visibilityClass + '">' + fullPlayersListArr[x].playerCode + '</td><td>' + fullPlayersListArr[x].lastName + '</td><td>' + fullPlayersListArr[x].firstName + '</td><td class="' + visibilityClass + '">' + fullPlayersListArr[x].city + '</td><td  class="' + visibilityClass + '">' + fullPlayersListArr[x].region + '</td><td>' + fullPlayersListArr[x].doublesPoints + '</td><td>' + fullPlayersListArr[x].singlesPoints + '</td></tr>');
             }
 
         }

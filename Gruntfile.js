@@ -148,8 +148,7 @@ module.exports = function(grunt) {
             basic: {
                 src: [
                     'public/javascripts/libs/*.js',
-                    'node_modules/foundation-sites/dist/foundation.min.js',
-                    'node_modules/foundation-sites/dist/plugins/foundation.offcanvas.js',
+                    'node_modules/foundation-sites/dist/js/foundation.js',
                     'public/javascripts/scripts/*.js'
                 ],
                 dest: 'public/javascripts/main.min.js',

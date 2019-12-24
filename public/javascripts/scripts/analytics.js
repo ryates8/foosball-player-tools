@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 var arrayOfStates = [];
 
 
@@ -95,7 +93,7 @@ function drawChart(data) {
             tooltip.style('display', 'none');
         });
 
-        /* OPTIONAL 
+        /* OPTIONAL
         path.on('mousemove', function(d) {
           tooltip.style('top', (d3.event.pageY + 10) + 'px')
             .style('left', (d3.event.pageX + 10) + 'px');
@@ -180,9 +178,9 @@ function getAllStates(fullPlayersList) {
 
     var cachedPlayerLength = fullPlayersList.length;
     for (var x = 0; x < cachedPlayerLength; x++) {
-        if (fullPlayersList[x].state !== '&nbsp;') {
-            if (isNewState(fullPlayersList[x].state)) {
-                arrayOfStates.push({ 'label': fullPlayersList[x].state, 'count': 1 });
+        if (fullPlayersList[x].region !== '&nbsp;') {
+            if (isNewState(fullPlayersList[x].region)) {
+                arrayOfStates.push({ 'label': fullPlayersList[x].region, 'count': 1 });
             }
         }
     }

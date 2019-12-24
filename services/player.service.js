@@ -22,9 +22,7 @@ class playerModel extends mongoose.Model {
         callback(err, null);
       }
 
-      console.log('players', players);
       callback(null, {
-        tableHeaders: ["firstName", "lastName", "city", "region", "singlesPoints", "doublesPoints"],
         tableData: players
       });
     });
