@@ -6486,6 +6486,9 @@ section#content table tr thead td {
 section#content #rankings thead td {
   padding: 0px;
 }
+section#content #rankings td span {
+  font-size: 12px;
+}
 section#content #rankings a {
   width: 100%;
   display: block;

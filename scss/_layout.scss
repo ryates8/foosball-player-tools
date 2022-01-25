@@ -6,184 +6,208 @@
 .column {
   margin: 0 10px;
 }
+
 body {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 section#header {
-    padding: 10px 0px 0px 0px;
-    border-bottom: 2px solid $charcoal;
+  padding: 10px 0px 0px 0px;
+  border-bottom: 2px solid $charcoal;
 }
 
 nav {
-    height: 75px;
-    position: relative;
-    #desktop-nav {
-        position: absolute;
-        bottom: 0px;
-        right: 0px;
-        ul {
-            li {
-                list-style-type: none;
-                float: left;
-                color: $charcoal;
-                font-weight: bold;
-                padding: 0 10px;
-                text-align: right;
-                border-right: 2px solid $charcoal;
-                a {
-                    color: $charcoal;
-                    font-size: rem_calc(16px);
-                    line-height: rem_calc(20px);
-                }
-                &:last-child {
-                    padding-right: 0px;
-                    border-right: 0px;
-                }
-            }
+  height: 75px;
+  position: relative;
+
+  #desktop-nav {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+
+    ul {
+      li {
+        list-style-type: none;
+        float: left;
+        color: $charcoal;
+        font-weight: bold;
+        padding: 0 10px;
+        text-align: right;
+        border-right: 2px solid $charcoal;
+
+        a {
+          color: $charcoal;
+          font-size: rem_calc(16px);
+          line-height: rem_calc(20px);
         }
+
+        &:last-child {
+          padding-right: 0px;
+          border-right: 0px;
+        }
+      }
     }
+  }
 }
 
 button.button {
-    float: right;
-    background-color: $white;
-    width: 25px;
-    height: 30px;
-    margin: 0px;
-    padding: 0px;
-    outline: none;
-    &:hover {
-        background: $white;
-    }
-    &:focus {
-        background: $white;
-        border: 0px;
-    }
-    &:after {
-        content: " ";
-        display: block;
-        height: 0;
-        position: absolute;
-        box-shadow: 0 0 0 1px #676767, 0 7px 0 1px #676767, 0 14px 0 1px #676767;
-        width: 16px;
-    }
+  float: right;
+  background-color: $white;
+  width: 25px;
+  height: 30px;
+  margin: 0px;
+  padding: 0px;
+  outline: none;
+
+  &:hover {
+    background: $white;
+  }
+
+  &:focus {
+    background: $white;
+    border: 0px;
+  }
+
+  &:after {
+    content: " ";
+    display: block;
+    height: 0;
+    position: absolute;
+    box-shadow: 0 0 0 1px #676767, 0 7px 0 1px #676767, 0 14px 0 1px #676767;
+    width: 16px;
+  }
 }
 
 section#content {
-    padding: 20px 0px;
-    table {
-        tr {
-            td {
-                &:nth-child(2) {
-                    max-width: 100px;
-                }
-                @media #{$small-only} {
-                    padding-left: 3px;
-                    padding-right: 3px;
-                }
-            }
-            thead {
-                td {
-                    cursor: pointer;
-                    font-size: rem_calc(14px);
-                    line-height: rem_calc(18px);
-                }
-            }
+  padding: 20px 0px;
+
+  table {
+    tr {
+      td {
+        &:nth-child(2) {
+          max-width: 100px;
         }
+
+        @media #{$small-only} {
+          padding-left: 3px;
+          padding-right: 3px;
+        }
+      }
+
+      thead {
+        td {
+          cursor: pointer;
+          font-size: rem_calc(14px);
+          line-height: rem_calc(18px);
+        }
+      }
     }
-    #rankings {
-        thead {
-            td {
-                padding: 0px;
-            }
-        }
-        a {
-            width: 100%;
-            display: block;
-            height: 100%;
-            padding: 0.5rem 0.625rem 0.625rem;
-        }
+  }
+
+  #rankings {
+    thead {
+      td {
+        padding: 0px;
+      }
     }
-    #partners {
-        margin-bottom: 10px;
-        p {
-            padding-top: 10px;
-        }
-        a {
-            background: $charcoal;
-            border: 1px solid $charcoal;
-            color: $white;
-            padding: 5px;
-            @include border-radius(10px);
-            display: block;
-            width: 140px;
-            float: left;
-            text-align: center;
-            margin-right: 15px;
-            &:hover {
-                background: $white;
-                color: $charcoal;
-            }
-        }
+
+    td {
+      span {
+        font-size: 12px;
+      }
     }
+
+    a {
+      width: 100%;
+      display: block;
+      height: 100%;
+      padding: 0.5rem 0.625rem 0.625rem;
+    }
+  }
+
+  #partners {
+    margin-bottom: 10px;
+
+    p {
+      padding-top: 10px;
+    }
+
+    a {
+      background: $charcoal;
+      border: 1px solid $charcoal;
+      color: $white;
+      padding: 5px;
+      @include border-radius(10px);
+      display: block;
+      width: 140px;
+      float: left;
+      text-align: center;
+      margin-right: 15px;
+
+      &:hover {
+        background: $white;
+        color: $charcoal;
+      }
+    }
+  }
 }
 
 section#footer {
-    background: $charcoal;
-    padding: 20px 0;
-    height: 200px;
-    position: relative;
-    h4 {
-        text-align: center;
-        color: $white;
-        position: absolute;
-        bottom: 0px;
-        width: 100%;
-    }
+  background: $charcoal;
+  padding: 20px 0;
+  height: 200px;
+  position: relative;
+
+  h4 {
+    text-align: center;
+    color: $white;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+  }
 }
 
 #analytics {
-    margin-top: 40px;
-    width: 320px;
-    height: 320px;
-    position: relative;
+  margin-top: 40px;
+  width: 320px;
+  height: 320px;
+  position: relative;
 }
 
 #legend {
-    svg text {
-        font-size: rem_calc(16px);
-    }
+  svg text {
+    font-size: rem_calc(16px);
+  }
 }
 
 .tooltip {
-    background: #eee;
-    box-shadow: 0 0 5px #999999;
-    color: #333;
-    display: none;
-    font-size: 12px;
-    left: 130px;
-    padding: 10px;
-    position: absolute;
-    text-align: center;
-    top: 95px;
-    width: 80px;
-    z-index: 10;
+  background: #eee;
+  box-shadow: 0 0 5px #999999;
+  color: #333;
+  display: none;
+  font-size: 12px;
+  left: 130px;
+  padding: 10px;
+  position: absolute;
+  text-align: center;
+  top: 95px;
+  width: 80px;
+  z-index: 10;
 }
 
 .legend {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 rect {
-    cursor: pointer;
-    /* NEW */
-    stroke-width: 2;
+  cursor: pointer;
+  /* NEW */
+  stroke-width: 2;
 }
 
 rect.disabled {
-    /* NEW */
-    fill: transparent !important;
-    /* NEW */
+  /* NEW */
+  fill: transparent !important;
+  /* NEW */
 }

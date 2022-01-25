@@ -56,11 +56,25 @@ block content
 					tbody
 						each val in players
 							tr
-									td.show-for-large= val.playerCode
-									td= val.lastName
-									td= val.firstName
-									td.show-for-large= val.city
-									td.show-for-large= val.region
-									td= val.doublesPoints
-									td= val.singlesPoints
+								td.show-for-large= val.playerCode
+								td= val.lastName
+								td= val.firstName
+								td.show-for-large= val.city
+								td.show-for-large= val.region
+								td
+									strong= val.doublesPoints
+									if val.doublesPoints < 1000
+										span  (Novice)
+									else if val.doublesPoints >= 1000 && val.doublesPoints < 2000
+										span  (Expert)
+									else
+										span  (Master)
+								td
+									strong= val.singlesPoints
+									if val.singlesPoints < 1000
+										span  (Novice)
+									else if val.singlesPoints >= 1000 && val.singlesPoints < 2000
+										span  (Expert)
+									else
+										span  (Master)
 
