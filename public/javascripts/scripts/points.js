@@ -112,7 +112,7 @@ var playerSorter = {
                 singlesRank = '(Amateur)';
             } else if (fullPlayersListArr[x].singlesPoints >= 1000 && fullPlayersListArr[x].singlesPoints < 1500) {
                 singlesRank = '(Expert)';
-            } else if (fullPlayersListArr[x].singlesPoints >= 1500 && fullPlayersListArr[x].singlesPoints < 200) {
+            } else if (fullPlayersListArr[x].singlesPoints >= 1500 && fullPlayersListArr[x].singlesPoints < 2000) {
                 singlesRank = '(Pro)';
             }
             else {
@@ -125,7 +125,7 @@ var playerSorter = {
                 doublesRank = '(Amateur)';
             } else if (fullPlayersListArr[x].doublesPoints >= 1000 && fullPlayersListArr[x].doublesPoints < 1500) {
                 doublesRank = '(Expert)';
-            } else if (fullPlayersListArr[x].doublesPoints >= 1500 && fullPlayersListArr[x].doublesPoints < 200) {
+            } else if (fullPlayersListArr[x].doublesPoints >= 1500 && fullPlayersListArr[x].doublesPoints < 2000) {
                 doublesRank = '(Pro)';
             }
             else {
