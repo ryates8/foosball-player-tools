@@ -106,20 +106,30 @@ var playerSorter = {
             var singlesRank;
             var doublesRank;
 
-            if (fullPlayersListArr[x].singlesPoints < 1000) {
+            if (fullPlayersListArr[x].singlesPoints < 500) {
                 singlesRank = '(Novice)';
-            } else if (fullPlayersListArr[x].singlesPoints >= 1000 && fullPlayersListArr[x].singlesPoints < 2000) {
+            } else if (fullPlayersListArr[x].singlesPoints >= 500 && fullPlayersListArr[x].singlesPoints < 1000) {
+                singlesRank = '(Amateur)';
+            } else if (fullPlayersListArr[x].singlesPoints >= 1000 && fullPlayersListArr[x].singlesPoints < 1500) {
                 singlesRank = '(Expert)';
-            } else {
+            } else if (fullPlayersListArr[x].singlesPoints >= 1500 && fullPlayersListArr[x].singlesPoints < 200) {
+                singlesRank = '(Pro)';
+            }
+            else {
                 singlesRank = '(Master)';
             }
 
-            if (fullPlayersListArr[x].doublesPoints < 1000) {
-                doublesRank = '(Novice)';
-            } else if (fullPlayersListArr[x].doublesPoints >= 1000 && fullPlayersListArr[x].doublesPoints < 2000) {
-                doublesRank = '(Expert)';
-            } else {
-                doublesRank = '(Master)';
+            if (fullPlayersListArr[x].doublesPoints < 500) {
+                singlesRank = '(Novice)';
+            } else if (fullPlayersListArr[x].doublesPoints >= 500 && fullPlayersListArr[x].doublesPoints < 1000) {
+                singlesRank = '(Amateur)';
+            } else if (fullPlayersListArr[x].doublesPoints >= 1000 && fullPlayersListArr[x].doublesPoints < 1500) {
+                singlesRank = '(Expert)';
+            } else if (fullPlayersListArr[x].doublesPoints >= 1500 && fullPlayersListArr[x].doublesPoints < 200) {
+                singlesRank = '(Pro)';
+            }
+            else {
+                singlesRank = '(Master)';
             }
 
             var visibilityClass = 'show-for-large';
