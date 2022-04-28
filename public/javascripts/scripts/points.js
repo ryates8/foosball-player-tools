@@ -120,16 +120,16 @@ var playerSorter = {
             }
 
             if (fullPlayersListArr[x].doublesPoints < 500) {
-                singlesRank = '(Novice)';
+                doublesRank = '(Novice)';
             } else if (fullPlayersListArr[x].doublesPoints >= 500 && fullPlayersListArr[x].doublesPoints < 1000) {
-                singlesRank = '(Amateur)';
+                doublesRank = '(Amateur)';
             } else if (fullPlayersListArr[x].doublesPoints >= 1000 && fullPlayersListArr[x].doublesPoints < 1500) {
-                singlesRank = '(Expert)';
+                doublesRank = '(Expert)';
             } else if (fullPlayersListArr[x].doublesPoints >= 1500 && fullPlayersListArr[x].doublesPoints < 200) {
-                singlesRank = '(Pro)';
+                doublesRank = '(Pro)';
             }
             else {
-                singlesRank = '(Master)';
+                doublesRank = '(Master)';
             }
 
             var visibilityClass = 'show-for-large';
